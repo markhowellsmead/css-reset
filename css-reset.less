@@ -1,0 +1,271 @@
+/*
+	CSS Reset
+	Mark Howells-Mead | www.permanenttourist.ch | Initial version August 2014
+	
+	The rules here work around various display bugs and hiccups in various browsers
+	AND apply a few rules which make the layout of a page cleaner and more logical.
+
+	There's no quick way to explain what all the rules do: if you're interested
+	(and you should be) then read the file properly and understand what rules
+	you're applying.
+
+	Usage
+
+	The LESS file should be used to compile a CSS reset file css-reset.css which
+	should then be linked into a template as the first CSS file.
+	
+	Credits and stuff
+
+	Many rules are collated through my own experience; others have been tied in
+	from other CSS reset solutions, such as those listed at www.cssreset.com. I take
+	no credit for rules copied 1:1; a hat-tip goes to all of the authors listed.
+
+	The files and codes in this CSS reset solution are offered with no guarantees
+	or promises. But I use it in my projects, which should be a good sign.
+	
+	Use it freely, widely and for free. Please respect the GPL v2 licence, which
+	is provided as part of this Git repository and also available via
+	http://www.gnu.org/licenses/gpl-2.0.html
+
+*/
+
+
+//////////////////////////////////////////////////
+// wide-reaching
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+
+	// use border-box method on all elements
+	// see http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	&:after {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section	{
+	display:block;
+	margin:0;
+	padding:0;
+}
+
+//////////////////////////////////////////////////
+// html and body
+
+html,body	{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+// 1. Corrects text resizing oddly in IE 6/7 when body `font-size` is set using `em` units.
+// 2. Prevents iOS text size adjust after orientation change, without disabling user zoom.
+html {
+	overflow-y: scroll;
+	background: #fff;
+    font-size: 100%; // 1
+    -webkit-text-size-adjust: 100%; // 2
+    -ms-text-size-adjust: 100%; // 2
+}
+
+body {
+	min-width: 240px;
+	text-align: center;
+	line-height:1.5;
+	word-wrap: normal;
+}
+
+//////////////////////////////////////////////////
+// attributes
+
+// Styling for `hidden` attribute not present in IE 7/8/9, Firefox 3 and Safari 4.
+[hidden] {
+    display: none;
+}
+
+// Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+audio, canvas, video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+// Prevents modern browsers from displaying `audio` without controls. Remove excess height in iOS 5 devices.
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+img	{
+	width: auto;
+	height: auto;
+	max-width: 100%;					// do not let images be wider than their containers
+	position: relative;					// for rounded corners in IE8 (via PIE.php)
+	vertical-align: middle;				// ensure no funny whitespace beneath image when in A tag
+	-ms-interpolation-mode: bicubic;	// Improves image quality when scaled in IE 7
+}
+
+hr	{
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	height: 1px;
+	color: transparent;
+	background-color: transparent;
+}
+
+//////////////////////////////////////////////////
+// list elements
+
+ul	{
+	padding:0 0 0 1.2em;
+}
+
+ul,ol {
+	margin:0 0 1em;
+}
+
+nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+//////////////////////////////////////////////////
+// typography
+
+abbr, acronym {
+	border:0;
+	font-variant:normal;
+}
+
+address, caption, cite, code, dfn, th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+
+a {
+	margin:0;
+	padding:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+abbr[title], dfn[title] {
+	border-bottom:1px dotted;
+	cursor:help;
+}
+
+blockquote {
+	quotes:none;
+	border-left: 5px solid #ccc;
+	margin-left: 0;
+	padding-left: 1em;
+	&:before, &:after {
+		content:'';
+		content:none;
+	}
+}
+
+caption, th {
+	text-align:left;
+}
+
+code,kbd,pre,samp {
+	font-family: monospace, serif;
+	_font-family: 'courier new', monospace;
+	font-size: 1em;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+p	{
+	margin:0 0 1em;
+}
+
+p,li,td,th,dd,dt,ul,ol,table,div,article,section,aside,nav,input,select,option,textarea,header {
+	font-size: 1em;
+}
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+sup, sub {
+    line-height: 0;
+	position: relative;
+	top: -.4em;
+	font-size: .75em;
+}
+
+sub {
+	top: .2em;
+}
+
+//////////////////////////////////////////////////
+// forms
+
+form {
+	margin: 0;
+}
+
+input, textarea, legend, fieldset, keygen, select, button, isindex {
+	font-family: inherit;
+	*font-size:100%; // for IE
+	vertical-align:middle;
+}
+
+legend {
+    border: 0;
+	color: inherit; // Corrects color not being inherited in IE 6/7/8/9.
+    padding: 0;
+    white-space: normal; // Corrects text not wrapping in Firefox 3.
+    *margin-left: -.4375em; // Corrects alignment displayed oddly in IE 6/7.
+}
+
+//////////////////////////////////////////////////
+// tables
+
+table,th,td	{
+	vertical-align: top;
+	border:	1px outset #999;
+	border-collapse: collapse;
+}
+table	{
+	margin-bottom: 1em;
+}
+th,td	{
+	text-align: left;
+	padding:2px 8px;
+}
