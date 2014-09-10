@@ -230,6 +230,15 @@ legend {
 	*margin-left: -.4375em; // Corrects alignment displayed oddly in IE 6/7.
 }
 
+// Stop iOS from zooming in when clicking into form fields. Standard font size on this device is 16px
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+	select, textarea, input {
+		&:focus {
+			font-size: 16px;
+		}
+	}
+}
+
 //////////////////////////////////////////////////
 // tables
 
