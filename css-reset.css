@@ -350,7 +350,7 @@ legend {
   white-space: normal;
   *margin-left: -0.4375em;
 }
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (max-device-width: 1024px) {
   select:focus,
   textarea:focus,
   input:focus {
