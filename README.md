@@ -5,6 +5,8 @@ Mark Howells-Mead | www.permanenttourist.ch/github | Initial version August 2014
 
 The rules here work around various display bugs and hiccups in various browsers AND apply a few rules which make the layout of a page cleaner and more logical.
 
+It's important to note that this CSS reset code doesn't normalize elements across the board and remove all margins and paddings. It only removes or re-defines margins and padding where this makes sense… for example on the ``<body>`` element.
+
 There's no quick way to explain what all the rules do: if you're interested (and you should be) then read the file properly and understand what rules you're applying.
 
 Usage
