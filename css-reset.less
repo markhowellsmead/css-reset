@@ -41,6 +41,7 @@ time, mark, audio, video {
 	}
 }
 
+// define HTML block elements (and their default margins) explicitly
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section	{
 	display:block;
 	margin:0;
@@ -50,6 +51,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section	{
 //////////////////////////////////////////////////
 // html and body
 
+// Remove default margin and padding on the HTML and BODY tags and set them to the full browser width
 html,body	{
 	margin: 0;
 	padding: 0;
@@ -66,10 +68,10 @@ html {
 	-ms-text-size-adjust: 100%; // 2
 }
 
+
 body {
-	min-width: 240px;
-	text-align: center;
-	line-height:1.5;
+	min-width: 240px;	// Ensure that the body doesn't get too narrow in mobile resolutions
+	line-height: 1.5;	// Improved line-height for better legibility
 	word-wrap: normal;
 }
 
@@ -98,11 +100,12 @@ img	{
 	width: auto;
 	height: auto;
 	max-width: 100%;					// do not let images be wider than their containers
-	position: relative;					// for rounded corners in IE8 (via PIE.php)
-	vertical-align: middle;				// ensure no funny whitespace beneath image when in A tag
+	position: relative;					// for rounded corners in IE8 (for compatability with CSS PIE)
+	vertical-align: middle;				// ensure no inexplicable whitespace beneath image when it's wrapped in an A tag
 	-ms-interpolation-mode: bicubic;	// Improves image quality when scaled in IE 7
 }
 
+// make the horizontal lines a bit less ugly by default
 hr	{
 	border: 0;
 	border-top: 1px solid #ccc;
@@ -179,6 +182,7 @@ del {
 	text-decoration: line-through;
 }
 
+// paragraphs normally have a vertical margin before and after the element. this standardizes them so that there's only ever a margin after the element.
 p	{
 	margin:0 0 1em;
 }
@@ -218,7 +222,7 @@ form {
 
 input, textarea, legend, fieldset, keygen, select, button, isindex {
 	font-family: inherit;
-	*font-size:100%; // for IE
+	*font-size:100%; // for IE pre v8
 	vertical-align:middle;
 }
 
@@ -230,7 +234,7 @@ legend {
 	*margin-left: -.4375em; // Corrects alignment displayed oddly in IE 6/7.
 }
 
-// Stop iOS from zooming in when clicking into form fields. Standard font size on this device is 16px
+// Stop iOS from zooming in when clicking into form fields. Standard font size on this device is 16px; other sizes don't stop the zoom effect.
 @media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width: 1024px) {
 	select, textarea, input {
 		&:focus {
@@ -245,7 +249,7 @@ legend {
 table,th,td	{
 	vertical-align: top;
 	border:	1px outset #999;
-	border-collapse: collapse;
+	border-collapse: collapse; // stop elements from having duplicate borders where they collide.
 }
 table	{
 	margin-bottom: 1em;
