@@ -19,7 +19,7 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
+footer, header, hgroup, menu, nav, main, section, summary,
 time, mark, audio, video {
 	margin:0;
 	padding:0;
@@ -50,13 +50,13 @@ dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section, summary,
+footer, header, hgroup, menu, nav, main, section, summary,
 time, mark, audio, video {
 	font-size:100%;
 }
 
 // define HTML block elements (and their default margins) explicitly
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section	{
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main	{
 	display: block;
 	margin: 0;
 	padding: 0;
@@ -78,8 +78,8 @@ html {
 	overflow-y: scroll;
 	background: #fff;
 	font-size: 100%; // 1
-	-webkit-text-size-adjust: 100%; // 2
-	-ms-text-size-adjust: 100%; // 2
+	-webkit-text-size-adjust: none; // 2
+	-ms-text-size-adjust: none; // 2
 }
 
 
@@ -207,7 +207,7 @@ p	{
 	margin:0 0 1em;
 }
 
-p,li,td,th,dd,dt,ul,ol,table,div,article,section,aside,nav,input,select,option,textarea,header {
+p,li,td,th,dd,dt,ul,ol,table,div,article,main,section,aside,nav,input,select,option,textarea,header {
 	font-size: 1em;
 }
 
