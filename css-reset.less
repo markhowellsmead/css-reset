@@ -6,6 +6,22 @@ See https://github.com/mhmli/css-reset for details
 */
 
 
+// use border-box method on all elements
+// see http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// and http://callmenick.com/post/the-new-box-sizing-reset
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
 //////////////////////////////////////////////////
 // wide-reaching
 
@@ -27,17 +43,6 @@ time, mark, audio, video {
 	outline:0;
 	vertical-align:baseline;
 	background:transparent;
-
-	// use border-box method on all elements
-	// see http://www.paulirish.com/2012/box-sizing-border-box-ftw/
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	&:after {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-	}
 }
 
 html, body, div, span, object, iframe,
@@ -76,10 +81,10 @@ html,body	{
 // 2. Prevents iOS text size adjust after orientation change, without disabling user zoom.
 html {
 	overflow-y: scroll;
-	background: #fff;
+	background-color: #fff;
 	font-size: 100%; // 1
-	-webkit-text-size-adjust: none; // 2
-	-ms-text-size-adjust: none; // 2
+	-webkit-text-size-adjust: 100%; // 2
+	-ms-text-size-adjust: 100%; // 2
 }
 
 
