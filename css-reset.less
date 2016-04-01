@@ -1,0 +1,298 @@
+/*
+CSS Reset
+Mark Howells-Mead | www.permanenttourist.ch | Initial version Autumn 2014. That's quite new.
+
+See https://github.com/mhmli/css-reset for details
+
+Make sure that you autoprefix if you're compiling your own CSS file
+
+*/
+
+
+// use border-box method on all elements
+// see http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// and http://callmenick.com/post/the-new-box-sizing-reset
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+//////////////////////////////////////////////////
+// wide-reaching
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, main, section, summary,
+time, mark, audio, video {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+html, body, div, span, object, iframe,
+p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, main, section, summary,
+time, mark, audio, video {
+	font-size:100%;
+}
+
+// define HTML block elements (and their default margins) explicitly
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main	{
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+//////////////////////////////////////////////////
+// html and body
+
+// Remove default margin and padding on the HTML and BODY tags and set them to the full browser width
+html,body	{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+// 1. Corrects text resizing oddly in IE 6/7 when body `font-size` is set using `em` units.
+// 2. Prevents iOS text size adjust after orientation change, without disabling user zoom.
+html {
+	background-color: #fff;
+	font-size: 100%; // 1
+	-webkit-text-size-adjust: 100%; // 2
+	-ms-text-size-adjust: 100%; // 2
+}
+
+
+body {
+	min-width: 240px;	// Ensure that the body doesn't get too narrow in mobile resolutions
+	line-height: 1.5;	// Improved line-height for better legibility
+	word-wrap: normal;
+}
+
+//////////////////////////////////////////////////
+// attributes
+
+// Styling for `hidden` attribute not present in IE 7/8/9, Firefox 3 and Safari 4.
+[hidden] {
+	display: none;
+}
+
+// Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+audio, canvas, video {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+// Prevents modern browsers from displaying `audio` without controls. Remove excess height in iOS 5 devices.
+audio:not([controls]) {
+	display: none;
+	height: 0;
+}
+
+img	{
+    height: auto;
+	max-width: 100%;					// do not let images be wider than their containers
+	position: relative;					// for rounded corners in IE8 (for compatability with CSS PIE)
+	vertical-align: middle;				// ensure no inexplicable whitespace beneath image when it's wrapped in an A tag
+	-ms-interpolation-mode: bicubic;	// Improves image quality when scaled in IE 7
+}
+
+iframe {
+	max-width: 100%;
+	border: none;
+}
+
+// make the horizontal lines a bit less ugly by default
+hr	{
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	height: 1px;
+	color: transparent;
+	background-color: transparent;
+}
+
+//////////////////////////////////////////////////
+// list elements
+
+ul {
+	padding: 0 0 0 1.2em;
+	margin: 0 0 1em;
+}
+
+ol {
+	margin: 0 0 1em 1.5em;
+}
+
+nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+//////////////////////////////////////////////////
+// typography
+
+abbr, acronym {
+	border:0;
+	font-variant:normal;
+}
+
+address, caption, cite, code, dfn, th, var {
+	font-style:normal;
+	font-weight:normal;
+}
+
+a {
+	margin:0;
+	padding:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+abbr[title], dfn[title] {
+	border-bottom:1px dotted;
+	cursor:help;
+}
+
+blockquote {
+	quotes:none;
+	border-left: 5px solid #ccc;
+	margin-left: 0;
+	padding-left: 1em;
+	&:before, &:after {
+		content:'';
+		content:none;
+	}
+}
+
+caption, th {
+	text-align:left;
+}
+
+code,kbd,pre,samp {
+	font-family: monospace, serif;
+	_font-family: 'courier new', monospace;
+	font-size: 1em;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+// paragraphs normally have a vertical margin before and after the element. this standardizes them so that there's only ever a margin after the element.
+p	{
+	margin:0 0 1em;
+}
+
+p,li,td,th,dd,dt,ul,ol,table,div,article,main,section,aside,nav,button,input,select,option,textarea,header {
+	font-size: 1em;
+}
+
+mark {
+	background: #ff0;
+	color: #000;
+}
+
+pre {
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+sup, sub {
+	line-height: 0;
+	position: relative;
+	top: -.4em;
+	font-size: .75em;
+}
+
+sub {
+	top: .2em;
+}
+
+//////////////////////////////////////////////////
+// forms
+
+form {
+	margin: 0;
+}
+
+input, textarea, legend, fieldset, keygen, select, button, isindex {
+	font-family: inherit;
+	*font-size:100%; // for IE pre v8
+	vertical-align:middle;
+}
+
+button,input[type=submit],input[type=reset],input[type=image],input[type=button] {cursor: pointer}
+
+legend {
+	border: 0;
+	color: inherit; // Corrects color not being inherited in IE 6/7/8/9.
+	padding: 0;
+	white-space: normal; // Corrects text not wrapping in Firefox 3.
+	*margin-left: -.4375em; // Corrects alignment displayed oddly in IE 6/7.
+}
+
+// Unify button heights with link buttons in Firefox http://davidwalsh.name/firefox-buttons
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+input::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+	margin-top:-2px;
+	margin-bottom: -2px;
+}
+
+// Stop iOS from zooming in when clicking into form fields. Standard font size on this device is 16px; other sizes don't stop the zoom effect.
+@media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width: 1024px) {
+	select, textarea, input {
+		&:focus {
+			font-size: 16px;
+		}
+	}
+}
+
+//////////////////////////////////////////////////
+// tables
+
+table,th,td	{
+	vertical-align: top;
+	border:	1px outset #999;
+	border-collapse: collapse; // stop elements from having duplicate borders where they collide.
+}
+table	{
+	margin-bottom: 1em;
+}
+th,td	{
+	text-align: left;
+	padding:2px 8px;
+}
