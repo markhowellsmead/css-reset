@@ -1,7 +1,7 @@
 CSS Reset
 =========
 
-Mark Howells-Mead | www.permanenttourist.ch/github | Initial version August 2014
+Mark Howells-Mead | www.markweb.ch | Initial version August 2014
 
 The rules here work around various display bugs and hiccups in various browsers AND apply a few rules which make the 
 layout of a page cleaner and more logical.
