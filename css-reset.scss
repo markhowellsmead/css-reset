@@ -12,11 +12,10 @@ Make sure that you autoprefix if you're compiling your own CSS file
 // use border-box method on all elements
 // see http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 // and http://callmenick.com/post/the-new-box-sizing-reset
-
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+	box-sizing: inherit;
 }
 
 html {
@@ -26,22 +25,24 @@ html {
 //////////////////////////////////////////////////
 // wide-reaching
 
-html, body, div, span, object, iframe,
+html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-abbr, address, cite, code,
-del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var,
-b, i,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, main, section, summary,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	outline: 0;
+	font-size: 100%;
+	font-family: inherit;
 	vertical-align: baseline;
 	background: transparent;
 }
@@ -61,8 +62,9 @@ time, mark, audio, video {
 	font-size: 100%;
 }
 
-// define HTML block elements (and their default margins) explicitly
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main	{
+// HTML5 display-role reset for older browsers
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, main {
 	display: block;
 	margin: 0;
 	padding: 0;
@@ -72,7 +74,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,ma
 // html and body
 
 // Remove default margin and padding on the HTML and BODY tags and set them to the full browser width
-html,body	{
+html, body	{
 	margin: 0;
 	padding: 0;
 	width: 100%;
@@ -103,8 +105,9 @@ body {
 }
 
 // Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
-audio, canvas, video {
+audio, canvas, video, progress {
 	display: inline-block;
+	vertical-align: baseline;
 	*display: inline;
 	*zoom: 1;
 }
@@ -113,6 +116,10 @@ audio, canvas, video {
 audio:not([controls]) {
 	display: none;
 	height: 0;
+}
+
+[hidden], template {
+	display: none;
 }
 
 img	{
@@ -152,7 +159,6 @@ ol {
 
 nav ul {
 	list-style: none;
-	padding: 0;
 }
 
 //////////////////////////////////////////////////
@@ -173,7 +179,10 @@ a {
 	padding: 0;
 	font-size: 100%;
 	vertical-align: baseline;
-	background: transparent;
+	background-color: transparent; // Remove the gray background color from active links in IE 10.
+	&:active, a:hover {
+  		outline: 0;
+	}
 }
 
 abbr[title], dfn[title] {
@@ -181,7 +190,11 @@ abbr[title], dfn[title] {
 	cursor: help;
 }
 
-blockquote {
+b, strong {
+	font-weight: bold;
+}
+
+blockquote, q {
 	quotes: none;
 	border-left: 5px solid #ccc;
 	margin-left: 0;
@@ -196,9 +209,8 @@ caption, th {
 	text-align: left;
 }
 
-code,kbd,pre,samp {
-	font-family: monospace, serif;
-	_font-family: 'courier new', monospace;
+code, kbd, pre, samp {
+	font-family: monospace, monospace;
 	font-size: 1em;
 }
 
@@ -206,12 +218,32 @@ del {
 	text-decoration: line-through;
 }
 
+dfn {
+	font-style: italic;
+}
+
+img {
+	border: 0; // Remove border when inside `a` element in IE 8/9/10.
+}
+
+ins {
+    background-color: #ff9;
+    color: #000;
+    text-decoration: none;
+}
+
+mark {
+    background-color: #ff9;
+    color: #000; 
+    font-style: italic;
+}
+
 // paragraphs normally have a vertical margin before and after the element. this standardizes them so that there's only ever a margin after the element.
 p	{
 	margin: 0 0 1em;
 }
 
-p,li,td,th,dd,dt,ul,ol,table,div,article,main,section,aside,nav,button,input,select,option,textarea,header {
+p, li, td, th, dd, dt, ul, ol, table, div, article, main, section, aside, nav, button, input, select, option, textarea, header, footer, main {
 	font-size: 1em;
 }
 
@@ -221,9 +253,11 @@ mark {
 }
 
 pre {
-	white-space: pre;
-	white-space: pre-wrap;
-	word-wrap: break-word;
+	overflow: auto;
+}
+
+small {
+	font-size: 80%;
 }
 
 sup, sub {
@@ -233,8 +267,17 @@ sup, sub {
 	font-size: .75em;
 }
 
+sup {
+	vertical-align: text-top;
+}
+
 sub {
+	vertical-align: text-bottom;
 	top: .2em;
+}
+
+svg:not(:root) {
+	overflow: hidden; // Correct overflow not hidden in IE 9/10/11.
 }
 
 //////////////////////////////////////////////////
@@ -250,28 +293,79 @@ input, textarea, legend, fieldset, keygen, select, button, isindex {
 	vertical-align: middle;
 }
 
-button,input[type=submit],input[type=reset],input[type=image],input[type=button] {
+button {
+	overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+button, select {
+	text-transform: none;
+}
+
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button, input[type=submit], input[type=reset], input[type=image], input[type=button] {
+	-webkit-appearance: button;
 	cursor: pointer;
+}
+
+button[disabled], html input[disabled] {
+	cursor: default;
+}
+
+
+// Unify button heights with link buttons in Firefox http://davidwalsh.name/firefox-buttons
+button::-moz-focus-inner, input::-moz-focus-inner { 
+	border: 0; 
+	padding: 0; 
+	margin-top: -2px; 
+	margin-bottom: -2px; 
+}
+
+input {
+	line-height: normal;
+}
+
+input[type="checkbox"], input[type="radio"] {
+	box-sizing: border-box;
+	padding: 0;
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+	height: auto;
+}
+
+input[type="search"] {
+	-webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
 }
 
 legend {
 	border: 0;
-	color: inherit; // Corrects color not being inherited in IE 6/7/8/9.
+	color: inherit; // Correct colour isn't inherited in IE 6/7/8/9.
 	padding: 0;
 	white-space: normal; // Corrects text not wrapping in Firefox 3.
 	*margin-left: -.4375em; // Corrects alignment displayed oddly in IE 6/7.
 }
 
-// Unify button heights with link buttons in Firefox http://davidwalsh.name/firefox-buttons
-input::-moz-focus-inner { 
-	border: 0; 
-	padding: 0; 
+optgroup {
+	font-weight: bold;
 }
-input::-moz-focus-inner { 
-	border: 0; 
-	padding: 0; 
-	margin-top: -2px; 
-	margin-bottom: -2px; 
+
+textarea {
+	overflow: auto;
 }
 
 // Stop iOS from zooming in when clicking into form fields. Standard font size on this device is 16px; other sizes don't stop the zoom effect.
@@ -286,15 +380,16 @@ input::-moz-focus-inner {
 //////////////////////////////////////////////////
 // tables
 
-table,th,td	{
+table, th, td	{
 	vertical-align: top;
 	border:	1px outset #999;
 	border-collapse: collapse; // stop elements from having duplicate borders where they collide.
 }
 table	{
 	margin-bottom: 1em;
+	border-spacing: 0;
 }
-th,td	{
+th, td	{
 	text-align: left;
 	padding: 2px 8px;
 }
