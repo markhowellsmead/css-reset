@@ -97,6 +97,15 @@ body {
 }
 
 //////////////////////////////////////////////////
+// interaction
+
+// Hide focus outline when using a mouse (e.g. on buttons)
+// https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
+:focus:not(:focus-visible){
+	outline:none;
+}
+
+//////////////////////////////////////////////////
 // attributes
 
 // Styling for `hidden` attribute not present in IE 7/8/9, Firefox 3 and Safari 4.
