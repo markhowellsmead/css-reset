@@ -7,10 +7,10 @@ See https://github.com/markhowellsmead/css-reset for details
 Make sure that you autoprefix if you're compiling your own CSS file
 
 */
+
 // use border-box method on all elements
 // see http://www.paulirish.com/2012/box-sizing-border-box-ftw/
 // and http://callmenick.com/post/the-new-box-sizing-reset
-
 *,
 *::after,
 *::before {
@@ -20,6 +20,7 @@ Make sure that you autoprefix if you're compiling your own CSS file
 html {
     box-sizing: border-box;
 }
+
 //////////////////////////////////////////////////
 // wide-reaching
 
@@ -71,6 +72,7 @@ kbd,
 label,
 legend,
 li,
+main,
 mark,
 menu,
 nav,
@@ -175,8 +177,8 @@ var,
 video {
     font-size: 100%;
 }
-// HTML5 display-role reset for older browsers
 
+// HTML5 display-role reset for older browsers
 article,
 aside,
 details,
@@ -193,6 +195,7 @@ section {
     margin: 0;
     padding: 0;
 }
+
 //////////////////////////////////////////////////
 // html and body
 // Remove default margin and padding on the HTML and BODY tags and set them to the full browser width
@@ -203,9 +206,9 @@ html {
     padding: 0;
     width: 100%;
 }
+
 // 1. Corrects text resizing oddly in IE 6/7 when body `font-size` is set using `em` units.
 // 2. Prevents iOS text size adjust after orientation change, without disabling user zoom.
-
 html {
     background-color: #fff;
     font-size: 100%; // 1
@@ -218,14 +221,15 @@ body {
     line-height: 1.5; // Improved line-height for better legibility
     word-wrap: normal;
 }
+
 //////////////////////////////////////////////////
 // interaction
 // Hide focus outline when using a mouse (e.g. on buttons)
 // https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible
-
 :focus:not(:focus-visible) {
     outline: none;
 }
+
 //////////////////////////////////////////////////
 // attributes
 // Styling for `hidden` attribute and template element not present in IE 7/8/9, Firefox 3 and Safari 4.
@@ -234,8 +238,8 @@ body {
 template {
     display: none;
 }
-// Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
 
+// Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
 audio,
 canvas,
 progress,
@@ -245,8 +249,8 @@ video {
     *display: inline;
     *zoom: 1;
 }
-// Prevents modern browsers from displaying `audio` without controls. Remove excess height in iOS 5 devices.
 
+// Prevents modern browsers from displaying `audio` without controls. Remove excess height in iOS 5 devices.
 audio:not([controls]) {
     display: none;
     height: 0;
@@ -264,16 +268,21 @@ iframe {
     max-width: 100%;
     border: none;
 }
-// make the horizontal lines a bit less ugly by default
 
+// make the horizontal lines a bit less ugly by default
+// 1. Add the correct box sizing in Firefox.
+// 2. Show the overflow in Edge and IE.
 hr {
     border: 0;
     border-top: 1px solid currentColor;
     margin: 1em 0;
-    height: 1px;
     color: transparent;
     background-color: transparent;
+    box-sizing: content-box; // 1
+    height: 0; // 1
+    overflow: visible; // 2
 }
+
 //////////////////////////////////////////////////
 // list elements
 
@@ -288,6 +297,7 @@ ol {
 nav ul {
     list-style: none;
 }
+
 //////////////////////////////////////////////////
 // typography
 
@@ -321,15 +331,22 @@ a {
     }
 }
 
+// 1. Remove the bottom border in Chrome 57-
+// 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+
 abbr[title],
 dfn[title] {
-    border-bottom: 1px dotted currentColor;
-    cursor: help;
+    border-bottom: none;
+    /* 1 */
+    text-decoration: underline;
+    /* 2 */
+    text-decoration: underline dotted;
+    /* 2 */
 }
 
 b,
 strong {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 blockquote,
@@ -367,7 +384,7 @@ dfn {
 }
 
 img {
-    border: 0; // Remove border when inside `a` element in IE 8/9/10.
+    border-style: none; // Remove border when inside `a` element in IE 8/9/10.
 }
 
 ins {
@@ -422,29 +439,31 @@ pre {
 }
 
 small {
-    font-size: 0.75em;
+    font-size: 0.8em;
 }
 
 sub,
 sup {
+    font-size: 75%;
     line-height: 0;
     position: relative;
-    top: -0.4em;
-    font-size: 0.75em;
-}
-
-sup {
-    vertical-align: text-top;
+    vertical-align: baseline;
 }
 
 sub {
     vertical-align: text-bottom;
-    top: 0.2em;
+    bottom: -0.25em;
+}
+
+sup {
+    vertical-align: text-top;
+    top: -0.5em;
 }
 
 svg:not(:root) {
     overflow: hidden; // Correct overflow not hidden in IE 9/10/11.
 }
+
 //////////////////////////////////////////////////
 // forms
 
@@ -468,8 +487,9 @@ textarea {
 button {
     overflow: visible;
 }
+
 /**
- * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * Addresses inconsistent `text-transform` inheritance for `button` and `select`.
  * All other form control elements do not inherit `text-transform` values.
  * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
  * Correct `select` style inheritance in Firefox.
@@ -485,23 +505,19 @@ optgroup,
 select,
 textarea {
     color: inherit;
-    font: inherit;
     margin: 0;
+    font-family: inherit;
+    font-size: 1em;
 }
 
 button,
-input[type=button],
-input[type=image],
-input[type=reset],
-input[type=submit] {
-    -webkit-appearance: button;
-    cursor: pointer;
+input[type="button"],
+input[type="image"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; // Correct the inability to style clickable types in iOS and Safari.
 }
 
-button[disabled],
-html input[disabled] {
-    cursor: default;
-}
 // Unify button heights with link buttons in Firefox http://davidwalsh.name/firefox-buttons
 
 button::-moz-focus-inner,
@@ -527,32 +543,94 @@ input[type="number"]::-webkit-outer-spin-button {
     height: auto;
 }
 
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
 input[type="search"] {
-    -webkit-appearance: textfield;
+    -webkit-appearance: textfield; // 1
+    outline-offset: -2px; // 2
 }
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
 
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner,
+button::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring,
+button:-moz-focusring {
+    outline: 1px dotted ButtonText;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    /* 1 */
+    font: inherit;
+    /* 2 */
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
 legend {
     border: 0;
-    color: inherit; // Correct colour isn't inherited in IE 6/7/8/9.
-    padding: 0;
     white-space: normal; // Corrects text not wrapping in Firefox 3.
-    *margin-left: -.4375em; // Corrects alignment displayed oddly in IE 6/7.
+    box-sizing: border-box; // 1
+    color: inherit; // 2
+    display: table; // 1
+    max-width: 100%; // 1
+    padding: 0; // 3
+    white-space: normal; // 1
 }
 
 optgroup {
     font-weight: bold;
 }
 
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
 textarea {
     overflow: auto;
 }
-// Stop iOS from zooming in when clicking into form fields. Standard font size on this device is 16px; other sizes don't stop the zoom effect.
-@media screen and (-webkit-min-device-pixel-ratio:0) and (max-device-width: 1024px) {
+
+/**
+ * Stop iOS from zooming in when clicking into form fields. Standard font size on this device is 16px; other sizes don't stop the zoom effect.
+ */
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (max-device-width: 1024px) {
     input,
     select,
     textarea {
@@ -561,6 +639,7 @@ textarea {
         }
     }
 }
+
 //////////////////////////////////////////////////
 // tables
 
